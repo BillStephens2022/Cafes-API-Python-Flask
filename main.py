@@ -48,6 +48,10 @@ def get_all_cafes():
     cafes = db.session.query(Cafe).all()
     return jsonify(cafes=[cafe.to_dict() for cafe in cafes])
 
+@app.route("/search")
+def get_cafe_at_location():
+    pass
+
 # HTTP GET - Read Record
 
 # HTTP POST - Create Record
