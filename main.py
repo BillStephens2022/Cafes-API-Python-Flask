@@ -50,7 +50,12 @@ def get_all_cafes():
 
 @app.route("/search")
 def get_cafe_at_location():
-    pass
+    query_location = request.args.get("loc")
+    cafe = db.session.query(Cafe).filter_by(location=query_location).first()
+    if cafe:
+        return jsonify(cafe=cafe.to_dict())
+    else:
+        return jsonify(error={"Not Found": "Sorry, we don't have a cafe at that location"})
 
 # HTTP GET - Read Record
 
