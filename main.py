@@ -43,11 +43,14 @@ def get_random_cafe():
     return jsonify(cafe=random_cafe.to_dict())
 
 
+# Get all cafes
 @app.route("/all")
 def get_all_cafes():
     cafes = db.session.query(Cafe).all()
     return jsonify(cafes=[cafe.to_dict() for cafe in cafes])
 
+
+# Find one cafe
 @app.route("/search")
 def get_cafe_at_location():
     query_location = request.args.get("loc")
@@ -57,9 +60,32 @@ def get_cafe_at_location():
     else:
         return jsonify(error={"Not Found": "Sorry, we don't have a cafe at that location"})
 
-# HTTP GET - Read Record
 
-# HTTP POST - Create Record
+def str_to_bool(str):
+    if str in ['True', ' true', 'T', 't', 'Yes', 'yes', 'y', '1']:
+        return True
+    else:
+        return False
+
+
+@app.route("/add", methods=["POST"])
+def post_new_cafe():
+    new_cafe = Cafe(
+        name=request.json.get("name"),
+        map_url=request.json.get("map_url"),
+        img_url=request.json.get("img_url"),
+        location=request.json.get("location"),
+        has_sockets=str_to_bool(request.json.get("has_sockets")),
+        has_toilet=str_to_bool(request.json.get("has_toilet")),
+        has_wifi=str_to_bool(request.json.get("has_wifi")),
+        can_take_calls=str_to_bool(request.json.get("can_take_calls")),
+        seats=request.json.get("seats"),
+        coffee_price=request.json.get("coffee_price"),
+    )
+    db.session.add(new_cafe)
+    db.session.commit()
+    return jsonify(response={"success": "Successfully added the new cafe."})
+
 
 # HTTP PUT/PATCH - Update Record
 
