@@ -23,8 +23,9 @@
   ## Usage
   
   Use Insomnia / Postman to interact with the API.  Instructional video provided below:
+  
+[Cafe-API.webm](https://user-images.githubusercontent.com/113722447/234913400-d18e2562-2333-4ce7-8ff0-be77be7019b7.webm)
 
-  ![Cafe API](Cafe-API.webm)
 
   ## License
 This application is covered under the MIT License.
