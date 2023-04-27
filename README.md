@@ -24,7 +24,7 @@
   
   Use Insomnia / Postman to interact with the API.  Instructional video provided below:
 
-  ![Cafe API](Cafe-API.mp4)
+  ![Cafe API](Cafe-API.webm)
 
   ## License
 This application is covered under the MIT License.
